@@ -32,8 +32,8 @@ function Shortcut({
 			onClick={() => clicked(index)}
 		>
 			<p className="name">{name}</p>
-			<p>{idx}</p>
-			<p>{link}</p>
+			{/* <p>{idx}</p> */}
+			{/* <p>{link}</p> */}
 			<img src={image} alt="" />
 			{editMode ? (
 				<div className="xbutton">

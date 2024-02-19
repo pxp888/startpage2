@@ -107,6 +107,10 @@ function App() {
 								<img src="./plus.png" alt="new icon button" />
 							</div>
 						) : null}
+
+						{shortcuts.length % 2 === 1 ? (
+							<div className="shortcut"></div>
+						) : null}
 					</div>
 				</div>
 
