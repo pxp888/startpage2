@@ -1,0 +1,19 @@
+.shortcut {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+
+	width: 200px;
+	height: 200px;
+
+	border: 1px solid #000;
+}
+
+.shortcut img {
+	position: absolute;
+	object-fit: fill;
+	width: 200px;
+	height: 200px;
+	z-index: -1;
+}
