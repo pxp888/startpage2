@@ -110,19 +110,18 @@ function App() {
 					</div>
 				</div>
 
-				{editMode ? (
-					<div className="setting_area">
-						<SettingPanel
-							name={name}
-							link={link}
-							image={image}
-							nameChanged={nameChanged}
-							linkChanged={linkChanged}
-							imageChanged={imageChanged}
-							selected={selected}
-						/>
-					</div>
-				) : null}
+				<div className="setting_area">
+					<SettingPanel
+						name={name}
+						link={link}
+						image={image}
+						nameChanged={nameChanged}
+						linkChanged={linkChanged}
+						imageChanged={imageChanged}
+						selected={selected}
+						editMode={editMode}
+					/>
+				</div>
 			</div>
 
 			<div className="setbutton" onClick={toggleEditMode}>
