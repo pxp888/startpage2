@@ -1,9 +1,9 @@
-:root {
+/* :root {
 	--backgroundcolor: #242424;
 	--framecolor: #000000;
 	--iconsize: 200px;
 	--framesize: 900px;
-}
+} */
 
 body {
 	background-color: var(--backgroundcolor);

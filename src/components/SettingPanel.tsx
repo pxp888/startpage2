@@ -21,26 +21,42 @@ function SettingPanel({
 	imageChanged,
 	selected,
 }: SettingPanelProps) {
-	const [frameSize, setFrameSize] = useState(50);
-	const [cutSize, setCutSize] = useState(50);
-	const [backColor, setBackColor] = useState("#000000");
+	const [frameSize, setFrameSize] = useState(800);
+	const [cutSize, setCutSize] = useState(150);
+	const [backColor, setBackColor] = useState("#242424");
 	const [frameColor, setFrameColor] = useState("#000000");
+
+	function applySettings() {
+		let root = document.documentElement;
+		if (root) {
+			root.style.setProperty("--backgroundcolor", backColor);
+			root.style.setProperty("--framecolor", frameColor);
+			root.style.setProperty("--iconsize", cutSize + "px");
+			root.style.setProperty("--framesize", frameSize + "px");
+		}
+	}
 
 	function frameSizeChanged(size: number) {
 		setFrameSize(size);
+		applySettings();
 	}
 
 	function cutSizeChanged(size: number) {
 		setCutSize(size);
+		applySettings();
 	}
 
 	function backColorChanged(color: string) {
 		setBackColor(color);
+		applySettings();
 	}
 
 	function frameColorChanged(color: string) {
 		setFrameColor(color);
+		applySettings();
 	}
+
+	applySettings();
 
 	return (
 		<div id="settingpanel">
@@ -84,8 +100,8 @@ function SettingPanel({
 				<input
 					id="framesizecontrol"
 					type="range"
-					min="10"
-					max="200"
+					min="400"
+					max="4000"
 					value={frameSize}
 					onChange={(e) => {
 						frameSizeChanged(parseInt(e.target.value));
