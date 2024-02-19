@@ -1,5 +1,48 @@
 :root {
-	background-color: #242424;
+	--backgroundcolor: #242424;
+	--framecolor: #000000;
+	--iconsize: 200px;
+	--framesize: 900px;
+}
+
+body {
+	background-color: var(--backgroundcolor);
+
+	margin: 0;
+	padding: 0;
+}
+
+.main_area {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+
+	width: 100%;
+	height: 100vh;
+}
+
+.main_content {
+	flex-grow: 1;
+
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 100%;
+	overflow-y: auto;
+}
+
+.frame {
+	max-width: var(--framesize);
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: center;
+
+	background-color: var(--framecolor);
+
+	margin-top: 50px;
+	padding: 50px 0;
 }
 
 .setbutton {

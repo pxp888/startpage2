@@ -43,10 +43,9 @@ function SettingPanel({
 	}
 
 	return (
-		<div>
-			<h1>Setting Panel</h1>
-			<div>
-				<label htmlFor="nameline">Name: </label>
+		<div id="settingpanel">
+			<div id="iconsettings">
+				<label htmlFor="nameline">Name:</label>
 				<input
 					type="text"
 					id="nameline"
@@ -57,7 +56,7 @@ function SettingPanel({
 					}}
 					{...(selected === -1 ? {disabled: true} : {})}
 				/>
-				<label htmlFor="linkline">URL: </label>
+				<label htmlFor="linkline">URL:</label>
 				<input
 					type="text"
 					id="linkline"
@@ -68,7 +67,7 @@ function SettingPanel({
 					}}
 					{...(selected === -1 ? {disabled: true} : {})}
 				/>
-				<label htmlFor="imageline">Image URL: </label>
+				<label htmlFor="imageline">Image URL:</label>
 				<input
 					type="text"
 					id="imageline"
@@ -85,8 +84,8 @@ function SettingPanel({
 				<input
 					id="framesizecontrol"
 					type="range"
-					min="0"
-					max="100"
+					min="10"
+					max="200"
 					value={frameSize}
 					onChange={(e) => {
 						frameSizeChanged(parseInt(e.target.value));
@@ -96,8 +95,8 @@ function SettingPanel({
 				<input
 					id="cutsizecontrol"
 					type="range"
-					min="0"
-					max="100"
+					min="50"
+					max="500"
 					value={cutSize}
 					onChange={(e) => {
 						cutSizeChanged(parseInt(e.target.value));

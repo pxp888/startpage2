@@ -1,3 +1,9 @@
-.settingpanel.grey {
-	opacity: 0.5;
+#iconsettings {
+	display: grid;
+	grid-template-columns: 120px 1fr;
+}
+
+#pagesettings {
+	display: grid;
+	grid-template-columns: 120px 1fr;
 }
