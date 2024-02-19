@@ -6,8 +6,15 @@ import SettingPanel from "./components/SettingPanel";
 import "./App.css";
 
 function App() {
+	let local = localStorage.getItem("shortcuts");
 	const defaults = ["New Shortcut", "www.google.com", "./blankimage.png"];
-	const [shortcuts, setShortcuts] = useState([defaults]);
+	let startcuts: string[][];
+	if (local) {
+		startcuts = JSON.parse(local);
+	} else {
+		startcuts = [defaults];
+	}
+	const [shortcuts, setShortcuts] = useState(startcuts);
 	const [editMode, setEditMode] = useState(true);
 	const [selected, setSelected] = useState(-1);
 
@@ -16,7 +23,10 @@ function App() {
 	const [image, setImage] = useState("");
 
 	function clicked(index: number) {
-		if (!editMode) return;
+		if (!editMode) {
+			window.open("//" + shortcuts[index][1], "_blank");
+			return;
+		}
 		console.log("clicked", index);
 		setSelected(index);
 		setName(shortcuts[index][0]);
@@ -36,6 +46,9 @@ function App() {
 		let cuts = [...shortcuts, defaults];
 		setShortcuts(cuts);
 		setSelected(cuts.length - 1);
+		setName(defaults[0]);
+		setLink(defaults[1]);
+		setImage(defaults[2]);
 	}
 
 	function nameChanged(name: string) {
@@ -43,6 +56,7 @@ function App() {
 		let cuts = [...shortcuts];
 		cuts[selected][0] = name;
 		setShortcuts(cuts);
+		localStorage.setItem("shortcuts", JSON.stringify(cuts));
 	}
 
 	function linkChanged(link: string) {
@@ -50,6 +64,7 @@ function App() {
 		let cuts = [...shortcuts];
 		cuts[selected][1] = link;
 		setShortcuts(cuts);
+		localStorage.setItem("shortcuts", JSON.stringify(cuts));
 	}
 
 	function imageChanged(image: string) {
@@ -57,6 +72,7 @@ function App() {
 		let cuts = [...shortcuts];
 		cuts[selected][2] = image;
 		setShortcuts(cuts);
+		localStorage.setItem("shortcuts", JSON.stringify(cuts));
 	}
 
 	function toggleEditMode() {
