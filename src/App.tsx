@@ -7,7 +7,7 @@ import "./App.css";
 
 function App() {
 	const defaults = ["New Shortcut", "www.google.com", "./blankimage.png"];
-	const [shortcuts, setShortcuts] = useState([defaults, defaults]);
+	const [shortcuts, setShortcuts] = useState([defaults]);
 	const [editMode, setEditMode] = useState(true);
 	const [selected, setSelected] = useState(-1);
 
@@ -16,19 +16,52 @@ function App() {
 	const [image, setImage] = useState("");
 
 	function clicked(index: number) {
+		if (!editMode) return;
 		console.log("clicked", index);
+		setSelected(index);
+		setName(shortcuts[index][0]);
+		setLink(shortcuts[index][1]);
+		setImage(shortcuts[index][2]);
+	}
+
+	function remover(index: number) {
+		console.log("remove", index);
+		setSelected(-1);
+		let cuts = shortcuts.filter((_, i) => i !== index);
+		setShortcuts(cuts);
+	}
+
+	function plusClicked() {
+		console.log("plus clicked");
+		let cuts = [...shortcuts, defaults];
+		setShortcuts(cuts);
+		setSelected(cuts.length - 1);
 	}
 
 	function nameChanged(name: string) {
 		setName(name);
+		let cuts = [...shortcuts];
+		cuts[selected][0] = name;
+		setShortcuts(cuts);
 	}
 
 	function linkChanged(link: string) {
 		setLink(link);
+		let cuts = [...shortcuts];
+		cuts[selected][1] = link;
+		setShortcuts(cuts);
 	}
 
 	function imageChanged(image: string) {
 		setImage(image);
+		let cuts = [...shortcuts];
+		cuts[selected][2] = image;
+		setShortcuts(cuts);
+	}
+
+	function toggleEditMode() {
+		setEditMode(!editMode);
+		setSelected(-1);
 	}
 
 	return (
@@ -46,21 +79,38 @@ function App() {
 								editMode={editMode}
 								selected={selected}
 								clicked={clicked}
+								remover={remover}
 							/>
 						))}
+
+						{editMode ? (
+							<div
+								className="plusbutton shortcut"
+								onClick={plusClicked}
+							>
+								<img src="./plus.png" alt="new icon button" />
+							</div>
+						) : null}
 					</div>
 				</div>
 
-				<div className="setting_area">
-					<SettingPanel
-						name={name}
-						link={link}
-						image={image}
-						nameChanged={nameChanged}
-						linkChanged={linkChanged}
-						imageChanged={imageChanged}
-					/>
-				</div>
+				{editMode ? (
+					<div className="setting_area">
+						<SettingPanel
+							name={name}
+							link={link}
+							image={image}
+							nameChanged={nameChanged}
+							linkChanged={linkChanged}
+							imageChanged={imageChanged}
+							selected={selected}
+						/>
+					</div>
+				) : null}
+			</div>
+
+			<div className="setbutton" onClick={toggleEditMode}>
+				<img src="./settings.png" alt="toggle settings" />
 			</div>
 		</>
 	);

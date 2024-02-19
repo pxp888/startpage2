@@ -1,19 +1,12 @@
-.shortcut {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-
-	width: 200px;
-	height: 200px;
-
-	border: 1px solid #000;
+.setbutton {
+	position: fixed;
+	bottom: 10px;
+	right: 10px;
+	width: 100px;
+	height: 100px;
 }
 
-.shortcut img {
-	position: absolute;
-	object-fit: fill;
-	width: 200px;
-	height: 200px;
-	z-index: -1;
+.setbutton img {
+	width: 100%;
+	height: 100%;
 }

@@ -1,3 +1,5 @@
+import "./shortcut.css";
+
 interface ShortcutProps {
 	idx: number;
 	name: string;
@@ -6,6 +8,7 @@ interface ShortcutProps {
 	editMode: boolean;
 	selected: number;
 	clicked: (index: number) => void;
+	remover: (index: number) => void;
 }
 
 function Shortcut({
@@ -16,21 +19,34 @@ function Shortcut({
 	editMode,
 	selected,
 	clicked,
+	remover,
 }: ShortcutProps) {
 	const index = idx;
 	return (
 		<div
 			className={
-				"shortcut " +
-				(selected === index ? "selected" : "") +
-				(editMode ? "editmode" : "")
+				"shortcut" +
+				(selected === index ? " selected" : "") +
+				(editMode ? " editmode" : "")
 			}
 			onClick={() => clicked(index)}
 		>
-			<h2>{name}</h2>
+			<p className="name">{name}</p>
 			<p>{idx}</p>
 			<p>{link}</p>
 			<img src={image} alt="" />
+			{editMode ? (
+				<div className="xbutton">
+					<img
+						src="./x.webp"
+						alt="delete button"
+						onClick={(event) => {
+							event?.stopPropagation();
+							remover(index);
+						}}
+					/>
+				</div>
+			) : null}
 		</div>
 	);
 }
