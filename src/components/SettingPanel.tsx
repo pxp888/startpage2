@@ -1,4 +1,4 @@
-import {useState} from "react";
+import {useState, useRef} from "react";
 
 import "./settingpanel.css";
 
@@ -99,6 +99,34 @@ function SettingPanel({
 	function moveDown() {
 		console.log("Move Down: " + selected);
 		swapIcons(selected, false);
+	}
+
+	function saveLocalStorage() {
+		const localStorageData = JSON.stringify(localStorage);
+
+		const blob = new Blob([localStorageData], {type: "application/json"});
+
+		const downloadLink = document.createElement("a");
+		downloadLink.href = URL.createObjectURL(blob);
+		downloadLink.download = "startpage.json";
+		downloadLink.textContent = "Download Backup";
+
+		document.body.appendChild(downloadLink);
+		downloadLink.click();
+
+		URL.revokeObjectURL(downloadLink.href);
+	}
+
+	const fileInputRef = useRef<HTMLInputElement>(null);
+
+	function uploadLocalStorage() {
+		const fileInput = fileInputRef.current;
+
+		if (fileInput) {
+			fileInput.click();
+		} else {
+			console.error("File input element not found!");
+		}
 	}
 
 	applySettings();
@@ -247,8 +275,18 @@ function SettingPanel({
 						<div>
 							<p>File Operations: </p>
 							<div className="halves">
-								<button>Import File</button>
-								<button>Export File</button>
+								<button onClick={uploadLocalStorage}>
+									Import File
+								</button>
+								<button onClick={saveLocalStorage}>
+									Export File
+								</button>
+								<input
+									type="file"
+									id="fileinput"
+									ref={fileInputRef}
+									style={{display: "none"}}
+								/>
 							</div>
 						</div>
 					</div>

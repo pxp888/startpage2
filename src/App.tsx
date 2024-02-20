@@ -7,7 +7,7 @@ import "./App.css";
 
 function App() {
 	let local = localStorage.getItem("shortcuts");
-	const defaults = ["New Shortcut", "www.google.com", "./blankimage.png"];
+	const defaults = ["New Shortcut", "", ""];
 	let startcuts: string[][];
 	if (local) {
 		startcuts = JSON.parse(local);
@@ -24,7 +24,13 @@ function App() {
 
 	function clicked(index: number) {
 		if (!editMode) {
-			window.open("//" + shortcuts[index][1], "_blank");
+			let link = shortcuts[index][1];
+			if (link === "") return;
+			if (link.startsWith("http")) {
+				window.open(link, "_blank");
+			} else {
+				window.open("//" + shortcuts[index][1], "_blank");
+			}
 			return;
 		}
 		console.log("clicked", index);

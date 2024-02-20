@@ -39,7 +39,11 @@ function Shortcut({
 				<p className="name">{name}</p>
 				{/* <p>{idx}</p> */}
 				{/* <p>{link}</p> */}
-				<img src={image} alt="" />
+				{image ? (
+					<img src={image} alt="" />
+				) : (
+					<img src="./blankimage.png" alt="" />
+				)}
 				{editMode ? (
 					<>
 						<div className="xbutton">
