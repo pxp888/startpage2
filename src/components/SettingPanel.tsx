@@ -28,13 +28,15 @@ function SettingPanel({
 	if (local) {
 		defaults = JSON.parse(local);
 	} else {
-		defaults = ["800", "150", "#242424", "#000000"];
+		defaults = ["800", "150", "#242424", "#000000", "30", "0"];
 	}
 
 	const [frameSize, setFrameSize] = useState(parseInt(defaults[0]));
 	const [cutSize, setCutSize] = useState(parseInt(defaults[1]));
 	const [backColor, setBackColor] = useState(defaults[2]);
 	const [frameColor, setFrameColor] = useState(defaults[3]);
+	const [framepadding, setFramePadding] = useState(parseInt(defaults[4]));
+	const [iconmargin, setIconMargin] = useState(parseInt(defaults[5]));
 
 	function applySettings() {
 		let root = document.documentElement;
@@ -43,12 +45,16 @@ function SettingPanel({
 			root.style.setProperty("--framecolor", frameColor);
 			root.style.setProperty("--iconsize", cutSize + "px");
 			root.style.setProperty("--framesize", frameSize + "px");
+			root.style.setProperty("--framepadding", framepadding + "px");
+			root.style.setProperty("--iconmargin", iconmargin + "px");
 		}
 		let local = [
 			frameSize.toString(),
 			cutSize.toString(),
 			backColor,
 			frameColor,
+			framepadding.toString(),
+			iconmargin.toString(),
 		];
 		localStorage.setItem("pageSettings", JSON.stringify(local));
 	}
@@ -73,6 +79,16 @@ function SettingPanel({
 		applySettings();
 	}
 
+	function framePaddingChanged(padding: number) {
+		setFramePadding(padding);
+		applySettings();
+	}
+
+	function iconMarginChanged(margin: number) {
+		setIconMargin(margin);
+		applySettings();
+	}
+
 	applySettings();
 
 	return (
@@ -80,85 +96,137 @@ function SettingPanel({
 			{editMode ? (
 				<div id="settingpanel">
 					<div id="iconsettings">
-						<label htmlFor="nameline">Name:</label>
-						<input
-							type="text"
-							id="nameline"
-							placeholder="Name"
-							value={name}
-							onChange={(e) => {
-								nameChanged(e.target.value);
-							}}
-							{...(selected === -1 ? {disabled: true} : {})}
-						/>
-						<label htmlFor="linkline">URL:</label>
-						<input
-							type="text"
-							id="linkline"
-							placeholder="URL"
-							value={link}
-							onChange={(e) => {
-								linkChanged(e.target.value);
-							}}
-							{...(selected === -1 ? {disabled: true} : {})}
-						/>
-						<label htmlFor="imageline">Image URL:</label>
-						<input
-							type="text"
-							id="imageline"
-							placeholder="Image URL"
-							value={image}
-							onChange={(e) => {
-								imageChanged(e.target.value);
-							}}
-							{...(selected === -1 ? {disabled: true} : {})}
-						/>
+						<div>
+							<label htmlFor="nameline">Name:</label>
+							<input
+								type="text"
+								id="nameline"
+								placeholder="Name"
+								value={name}
+								onChange={(e) => {
+									nameChanged(e.target.value);
+								}}
+								{...(selected === -1 ? {disabled: true} : {})}
+							/>
+						</div>
+						<div>
+							<label htmlFor="linkline">URL:</label>
+							<input
+								type="text"
+								id="linkline"
+								placeholder="URL"
+								value={link}
+								onChange={(e) => {
+									linkChanged(e.target.value);
+								}}
+								{...(selected === -1 ? {disabled: true} : {})}
+							/>
+						</div>
+						<div>
+							<label htmlFor="imageline">Image URL:</label>
+							<input
+								type="text"
+								id="imageline"
+								placeholder="Image URL"
+								value={image}
+								onChange={(e) => {
+									imageChanged(e.target.value);
+								}}
+								{...(selected === -1 ? {disabled: true} : {})}
+							/>
+						</div>
 					</div>
 					<div id="pagesettings">
-						<label htmlFor="framesizecontrol">
-							Max Frame Size{" "}
-						</label>
-						<input
-							id="framesizecontrol"
-							type="range"
-							min="400"
-							max="4000"
-							value={frameSize}
-							onChange={(e) => {
-								frameSizeChanged(parseInt(e.target.value));
-							}}
-						/>
-						<label htmlFor="cutsizecontrol">Icon Size </label>
-						<input
-							id="cutsizecontrol"
-							type="range"
-							min="50"
-							max="500"
-							value={cutSize}
-							onChange={(e) => {
-								cutSizeChanged(parseInt(e.target.value));
-							}}
-						/>
-						<label htmlFor="backcolorcontrol">
-							Background Color{" "}
-						</label>
-						<input
-							id="backcolorcontrol"
-							type="color"
-							value={backColor}
-							onChange={(e) => {
-								backColorChanged(e.target.value);
-							}}
-						/>
-						<label htmlFor="framecolorcontrol">Frame Color </label>
-						<input
-							id="framecolorcontrol"
-							type="color"
-							value={frameColor}
-							onChange={(e) => {
-								frameColorChanged(e.target.value);
-							}}
-						/>
+						<div>
+							<label htmlFor="framesizecontrol">
+								Max Frame Size{" "}
+							</label>
+							<input
+								id="framesizecontrol"
+								type="range"
+								min="400"
+								max="4000"
+								value={frameSize}
+								onChange={(e) => {
+									frameSizeChanged(parseInt(e.target.value));
+								}}
+							/>
+						</div>
+						<div>
+							<label htmlFor="framepadcontrol">
+								Frame Padding{" "}
+							</label>
+							<input
+								id="framepadcontrol"
+								type="range"
+								min="0"
+								max="200"
+								value={framepadding}
+								onChange={(e) => {
+									framePaddingChanged(
+										parseInt(e.target.value)
+									);
+								}}
+							/>
+						</div>
+						<div>
+							<label htmlFor="cutsizecontrol">Icon Size </label>
+							<input
+								id="cutsizecontrol"
+								type="range"
+								min="50"
+								max="500"
+								value={cutSize}
+								onChange={(e) => {
+									cutSizeChanged(parseInt(e.target.value));
+								}}
+							/>
+						</div>
+						<div>
+							<label htmlFor="iconmargincontrol">
+								Icon Margin{" "}
+							</label>
+							<input
+								id="iconmargincontrol"
+								type="range"
+								min="0"
+								max="100"
+								value={iconmargin}
+								onChange={(e) => {
+									iconMarginChanged(parseInt(e.target.value));
+								}}
+							/>
+						</div>
+					</div>
+					<div id="filesettings">
+						<div>
+							<label htmlFor="backcolorcontrol">
+								Background Color{" "}
+							</label>
+							<input
+								id="backcolorcontrol"
+								type="color"
+								value={backColor}
+								onChange={(e) => {
+									backColorChanged(e.target.value);
+								}}
+							/>
+						</div>
+						<div>
+							<label htmlFor="framecolorcontrol">
+								Frame Color{" "}
+							</label>
+							<input
+								id="framecolorcontrol"
+								type="color"
+								value={frameColor}
+								onChange={(e) => {
+									frameColorChanged(e.target.value);
+								}}
+							/>
+						</div>
+						<button>Import File</button>
+						<button>Export File</button>
 					</div>
 				</div>
 			) : null}

@@ -9,11 +9,9 @@
 
 	position: relative;
 	cursor: pointer;
-}
 
-/* .shortcut.editmode {
-	opacity: 0.75;
-} */
+	margin: var(--iconmargin);
+}
 
 .shortcut.selected {
 	box-shadow: 0 0 10px 5px orange;

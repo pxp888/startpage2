@@ -1,9 +1,65 @@
-#iconsettings {
-	display: grid;
-	grid-template-columns: 120px 1fr;
+.setting_area {
+	width: 100%;
 }
 
-#pagesettings {
+#settingpanel {
+	background-color: gray;
+	/* padding: 5px; */
+	/* padding-right: 120px; */
 	display: grid;
-	grid-template-columns: 120px 1fr;
+	grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+
+	max-height: 30vh;
+	overflow-y: auto;
+}
+
+#settingpanel h3 {
+	margin: 4px 0;
+}
+
+#settingpanel hr {
+	margin: 2px 0 16px 0;
+	border: none;
+	border-top: 1px solid rgb(73, 73, 73);
+}
+
+#settingpanel > div {
+	min-width: 360px;
+	overflow-x: auto;
+	border: 1px solid rgb(70, 70, 70);
+	border-radius: 5px;
+	padding: 5px;
+	margin: 5px;
+}
+
+#iconsettings > div {
+	height: 32px;
+	display: grid;
+	grid-template-columns: 110px 1fr;
+	align-items: baseline;
+}
+
+#iconsettings input[type="text" i] {
+	height: 24px;
+	font-size: 1rem;
+	border-radius: 4px;
+	border-style: none;
+	border: none;
+	padding-block: 3px;
+	padding-inline: 5px;
+	margin-right: 5px;
+}
+
+#pagesettings > div {
+	height: 32px;
+	display: grid;
+	grid-template-columns: 150px 1fr;
+	align-items: baseline;
+}
+
+#filesettings > div {
+	height: 32px;
+	display: grid;
+	grid-template-columns: 150px 1fr;
+	align-items: baseline;
 }
