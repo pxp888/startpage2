@@ -24,6 +24,7 @@ function App() {
 
 	function clicked(index: number) {
 		if (!editMode) {
+			// return;
 			let link = shortcuts[index][1];
 			if (link === "") return;
 			if (link.startsWith("http")) {

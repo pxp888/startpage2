@@ -36,7 +36,14 @@ function Shortcut({
 				}
 				onClick={() => clicked(index)}
 			>
-				<p className="name">{name}</p>
+				{editMode ? (
+					<p className="name">{name}</p>
+				) : (
+					<a href="#" className="name">
+						{name}
+					</a>
+				)}
+
 				{/* <p>{idx}</p> */}
 				{/* <p>{link}</p> */}
 				{image ? (

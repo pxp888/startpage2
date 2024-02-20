@@ -39,6 +39,7 @@
 	font-size: 1.2rem;
 	text-wrap: wrap;
 	word-wrap: break-word;
+	text-decoration: none;
 }
 
 .shortcut:hover .name {
