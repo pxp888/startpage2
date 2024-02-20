@@ -127,6 +127,9 @@ function App() {
 				</div>
 
 				<div className="setting_area">
+					<div className="setbutton" onClick={toggleEditMode}>
+						<img src="./settings.png" alt="toggle settings" />
+					</div>
 					<SettingPanel
 						name={name}
 						link={link}
@@ -139,10 +142,6 @@ function App() {
 						swapIcons={swapIcons}
 					/>
 				</div>
-			</div>
-
-			<div className="setbutton" onClick={toggleEditMode}>
-				<img src="./settings.png" alt="toggle settings" />
 			</div>
 		</>
 	);

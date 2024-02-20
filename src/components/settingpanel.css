@@ -1,15 +1,14 @@
 .setting_area {
 	width: 100%;
+	position: relative;
 }
 
 #settingpanel {
 	background-color: gray;
-	/* padding: 5px; */
-	/* padding-right: 120px; */
 	display: grid;
 	grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
 
-	max-height: 30vh;
+	max-height: 40vh;
 	overflow-y: auto;
 }
 
@@ -24,7 +23,6 @@
 }
 
 #settingpanel > div {
-	min-width: 360px;
 	overflow-x: auto;
 	border: 1px solid rgb(70, 70, 70);
 	border-radius: 5px;
@@ -62,4 +60,32 @@
 	display: grid;
 	grid-template-columns: 150px 1fr;
 	align-items: baseline;
+}
+
+.halves {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	margin-top: 3px;
+}
+
+.setbutton {
+	position: absolute;
+	right: 20px;
+	top: -110px;
+	width: 100px;
+	height: 100px;
+	background-color: white;
+	border-radius: 50%;
+	opacity: 0.15;
+	transition: opacity 0.3s;
+}
+
+.setbutton:hover {
+	opacity: 1;
+}
+
+.setbutton img {
+	width: 90px;
+	height: 90px;
+	margin: 5px;
 }

@@ -149,9 +149,9 @@ function SettingPanel({
 						</div>
 						<div>
 							<label>Icon Order</label>
-							<div>
-								<button onClick={moveUp}>Move Up</button>
-								<button onClick={moveDown}>Move Down</button>
+							<div className="halves">
+								<button onClick={moveUp}>Up</button>
+								<button onClick={moveDown}>Down</button>
 							</div>
 						</div>
 					</div>
@@ -244,8 +244,13 @@ function SettingPanel({
 								}}
 							/>
 						</div>
-						<button>Import File</button>
-						<button>Export File</button>
+						<div>
+							<p>File Operations: </p>
+							<div className="halves">
+								<button>Import File</button>
+								<button>Export File</button>
+							</div>
+						</div>
 					</div>
 				</div>
 			) : null}
