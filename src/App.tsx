@@ -92,6 +92,14 @@ function App() {
 		up ? setSelected(idx) : setSelected(idx + 1);
 	}
 
+	function imageDropped(index: number, image: string) {
+		console.log("image dropped", index, image);
+		let cuts = [...shortcuts];
+		cuts[index][2] = image;
+		setShortcuts(cuts);
+		localStorage.setItem("shortcuts", JSON.stringify(cuts));
+	}
+
 	return (
 		<>
 			<div className="main_area">
@@ -108,6 +116,7 @@ function App() {
 								selected={selected}
 								clicked={clicked}
 								remover={remover}
+								imageDropped={imageDropped}
 							/>
 						))}
 
