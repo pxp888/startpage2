@@ -34,7 +34,6 @@ function App() {
 			}
 			return;
 		}
-		console.log("clicked", index);
 		setSelected(index);
 		setName(shortcuts[index][0]);
 		setLink(shortcuts[index][1]);
@@ -42,14 +41,12 @@ function App() {
 	}
 
 	function remover(index: number) {
-		console.log("remove", index);
 		setSelected(-1);
 		let cuts = shortcuts.filter((_, i) => i !== index);
 		setShortcuts(cuts);
 	}
 
 	function plusClicked() {
-		console.log("plus clicked");
 		let cuts = [...shortcuts, defaults];
 		setShortcuts(cuts);
 		setSelected(cuts.length - 1);
@@ -88,7 +85,6 @@ function App() {
 	}
 
 	function swapIcons(idx: number, up: boolean) {
-		console.log("swap", idx);
 		if (idx === -1) return;
 		if (idx === shortcuts.length - 1) return;
 		let cuts = [...shortcuts];
@@ -97,10 +93,10 @@ function App() {
 		cuts[idx] = temp;
 		setShortcuts(cuts);
 		up ? setSelected(idx) : setSelected(idx + 1);
+		localStorage.setItem("shortcuts", JSON.stringify(cuts));
 	}
 
 	function imageDropped(index: number, image: string) {
-		console.log("image dropped", index, image);
 		let cuts = [...shortcuts];
 		cuts[index][2] = image;
 		setShortcuts(cuts);
