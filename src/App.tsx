@@ -15,7 +15,7 @@ function App() {
 		startcuts = [defaults];
 	}
 	const [shortcuts, setShortcuts] = useState(startcuts);
-	const [editMode, setEditMode] = useState(true);
+	const [editMode, setEditMode] = useState(false);
 	const [selected, setSelected] = useState(-1);
 
 	const [name, setName] = useState("");
