@@ -113,7 +113,7 @@ function App() {
 								key={index}
 								idx={index}
 								name={shortcut[0]}
-								// link={shortcut[1]}
+								link={shortcut[1]}
 								image={shortcut[2]}
 								editMode={editMode}
 								selected={selected}
