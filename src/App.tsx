@@ -80,6 +80,18 @@ function App() {
 		setSelected(-1);
 	}
 
+	function swapIcons(idx: number, up: boolean) {
+		console.log("swap", idx);
+		if (idx === -1) return;
+		if (idx === shortcuts.length - 1) return;
+		let cuts = [...shortcuts];
+		let temp = shortcuts[idx + 1];
+		cuts[idx + 1] = cuts[idx];
+		cuts[idx] = temp;
+		setShortcuts(cuts);
+		up ? setSelected(idx) : setSelected(idx + 1);
+	}
+
 	return (
 		<>
 			<div className="main_area">
@@ -124,6 +136,7 @@ function App() {
 						imageChanged={imageChanged}
 						selected={selected}
 						editMode={editMode}
+						swapIcons={swapIcons}
 					/>
 				</div>
 			</div>

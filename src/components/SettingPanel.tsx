@@ -9,6 +9,7 @@ interface SettingPanelProps {
 	nameChanged: (name: string) => void;
 	linkChanged: (link: string) => void;
 	imageChanged: (image: string) => void;
+	swapIcons: (idx: number, up: boolean) => void;
 	selected: number;
 	editMode: boolean;
 }
@@ -20,6 +21,7 @@ function SettingPanel({
 	nameChanged,
 	linkChanged,
 	imageChanged,
+	swapIcons,
 	selected,
 	editMode,
 }: SettingPanelProps) {
@@ -89,6 +91,16 @@ function SettingPanel({
 		applySettings();
 	}
 
+	function moveUp() {
+		console.log("Move Up: " + selected);
+		swapIcons(selected - 1, true);
+	}
+
+	function moveDown() {
+		console.log("Move Down: " + selected);
+		swapIcons(selected, false);
+	}
+
 	applySettings();
 
 	return (
@@ -134,6 +146,13 @@ function SettingPanel({
 								}}
 								{...(selected === -1 ? {disabled: true} : {})}
 							/>
+						</div>
+						<div>
+							<label>Icon Order</label>
+							<div>
+								<button onClick={moveUp}>Move Up</button>
+								<button onClick={moveDown}>Move Down</button>
+							</div>
 						</div>
 					</div>
 					<div id="pagesettings">
