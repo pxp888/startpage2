@@ -4,7 +4,7 @@ import "./shortcut.css";
 interface ShortcutProps {
 	idx: number;
 	name: string;
-	link: string;
+	// link: string;
 	image: string;
 	editMode: boolean;
 	selected: number;
@@ -16,7 +16,7 @@ interface ShortcutProps {
 function Shortcut({
 	idx,
 	name,
-	link,
+	// link,
 	image,
 	editMode,
 	selected,
