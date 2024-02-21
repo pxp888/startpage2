@@ -6,7 +6,7 @@
 #settingpanel {
 	background-color: gray;
 	display: grid;
-	grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+	grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
 
 	max-height: 45vh;
 	overflow-y: auto;
@@ -30,14 +30,7 @@
 	margin: 5px;
 }
 
-#iconsettings > div {
-	height: 32px;
-	display: grid;
-	grid-template-columns: 110px 1fr;
-	align-items: baseline;
-}
-
-#iconsettings input[type="text" i] {
+#settingpanel input[type="text" i] {
 	height: 24px;
 	font-size: 1rem;
 	border-radius: 4px;
@@ -46,6 +39,13 @@
 	padding-block: 3px;
 	padding-inline: 5px;
 	margin-right: 5px;
+}
+
+#iconsettings > div {
+	height: 32px;
+	display: grid;
+	grid-template-columns: 110px 1fr;
+	align-items: baseline;
 }
 
 #pagesettings > div {

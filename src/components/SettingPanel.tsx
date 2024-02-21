@@ -124,7 +124,6 @@ function SettingPanel({
 		}
 		const file = event.target.files[0];
 		const reader = new FileReader();
-
 		reader.onload = (event) => {
 			try {
 				const data = JSON.parse(event.target!.result as string);
@@ -138,18 +137,15 @@ function SettingPanel({
 				console.error("Error parsing JSON", error);
 			}
 		};
-
 		reader.onerror = (error) => {
 			console.error("Error reading file", error);
 		};
-
 		reader.readAsText(file);
 		location.reload();
 	}
 
 	function uploadLocalStorage() {
 		const fileInput = fileInputRef.current;
-
 		if (fileInput) {
 			fileInput.click();
 		} else {
