@@ -1,4 +1,6 @@
 import ImgDrop from "./ImgDrop";
+import OrderDrop from "./OrderDrop";
+
 import "./shortcut.css";
 
 interface ShortcutProps {
@@ -28,24 +30,6 @@ function Shortcut({
 }: ShortcutProps) {
 	const index = idx;
 
-	function handleDrop(e: React.DragEvent<HTMLDivElement>) {
-		e.preventDefault();
-		let source = e.dataTransfer.getData("text");
-		// console.log("drop", source, index);
-		moveIcons(parseInt(source), index);
-	}
-
-	const draggers = editMode
-		? {}
-		: {
-				draggable: "true",
-				onDragStart: (e: React.DragEvent<HTMLDivElement>) =>
-					e.dataTransfer.setData("text/plain", index.toString()),
-				onDragOver: (e: React.DragEvent<HTMLDivElement>) =>
-					e.preventDefault(),
-				onDrop: (e: React.DragEvent<HTMLDivElement>) => handleDrop(e),
-		  };
-
 	return (
 		<>
 			<div
@@ -55,7 +39,6 @@ function Shortcut({
 					(editMode ? " editmode" : "")
 				}
 				onClick={() => clicked(index)}
-				{...draggers}
 			>
 				{editMode ? (
 					<p className="name">{name}</p>
@@ -88,7 +71,9 @@ function Shortcut({
 							}}
 						/>
 					</>
-				) : null}
+				) : (
+					<OrderDrop idx={index} moveIcons={moveIcons} />
+				)}
 			</div>
 		</>
 	);
