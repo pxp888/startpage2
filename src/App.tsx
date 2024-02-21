@@ -142,8 +142,8 @@ function App() {
 						) : null}
 					</div>
 				</div>
-
-				<div className="setting_area">
+				<div className={"spacer " + (editMode ? "edit" : "")} />
+				<div className={"setting_area " + (editMode ? "edit" : "")}>
 					<div className="setbutton" onClick={toggleEditMode}>
 						<img src="./settings.png" alt="toggle settings" />
 					</div>

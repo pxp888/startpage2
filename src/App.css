@@ -11,19 +11,16 @@ body {
 	background-repeat: no-repeat;
 }
 
-.main_area {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
+body > a {
+	display: none;
+}
 
+.main_area {
 	width: 100%;
 	height: 100vh;
 }
 
 .main_content {
-	flex-grow: 1;
-
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -42,4 +39,45 @@ body {
 
 	margin-top: 50px;
 	padding: var(--framepadding);
+}
+
+.spacer {
+	height: 0px;
+}
+
+.spacer.edit {
+	height: 450px;
+}
+
+.setting_area {
+	width: 100%;
+	position: fixed;
+	top: 100vh;
+	bottom: auto;
+	z-index: 20;
+}
+
+.setting_area.edit {
+	top: auto;
+	bottom: 0;
+	animation-name: slide-up;
+	animation-duration: 0.5s;
+}
+
+@keyframes slide-up {
+	from {
+		bottom: -100%;
+	}
+	to {
+		bottom: 0%;
+	}
+}
+
+@keyframes slide-down {
+	from {
+		bottom: 0%;
+	}
+	to {
+		bottom: -100%;
+	}
 }
