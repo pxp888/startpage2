@@ -24,6 +24,14 @@ function App() {
 
 	function clicked(index: number) {
 		if (!editMode) {
+			// return;
+			let link = shortcuts[index][1];
+			if (link === "") return;
+			if (link.startsWith("http")) {
+				window.open(link, "_blank");
+			} else {
+				window.open("//" + shortcuts[index][1], "_blank");
+			}
 			return;
 		}
 		setSelected(index);
