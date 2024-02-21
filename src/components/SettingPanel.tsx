@@ -31,7 +31,7 @@ function SettingPanel({
 	if (local) {
 		defaults = JSON.parse(local);
 	} else {
-		defaults = ["800", "150", "#242424", "#000000", "30", "0"];
+		defaults = ["800", "150", "#242424", "#000000", "30", "0", "100"];
 	}
 
 	const [frameSize, setFrameSize] = useState(parseInt(defaults[0]));
@@ -40,6 +40,7 @@ function SettingPanel({
 	const [frameColor, setFrameColor] = useState(defaults[3]);
 	const [framepadding, setFramePadding] = useState(parseInt(defaults[4]));
 	const [iconmargin, setIconMargin] = useState(parseInt(defaults[5]));
+	const [frameOpacity, setFrameOpacity] = useState(parseInt(defaults[6]));
 
 	function applySettings() {
 		let root = document.documentElement;
@@ -50,6 +51,7 @@ function SettingPanel({
 			root.style.setProperty("--framesize", frameSize + "px");
 			root.style.setProperty("--framepadding", framepadding + "px");
 			root.style.setProperty("--iconmargin", iconmargin + "px");
+			root.style.setProperty("--frameopacity", frameOpacity.toString());
 		}
 		let local = [
 			frameSize.toString(),
@@ -58,8 +60,23 @@ function SettingPanel({
 			frameColor,
 			framepadding.toString(),
 			iconmargin.toString(),
+			frameOpacity.toString(),
 		];
 		localStorage.setItem("pageSettings", JSON.stringify(local));
+	}
+
+	function imageDrop(event: React.DragEvent) {
+		event.preventDefault();
+
+		const imageUrl = event.dataTransfer.getData("text/html");
+		const parser = new DOMParser();
+		const doc = parser.parseFromString(imageUrl, "text/html");
+		const img = doc.querySelector("img");
+		if (img == null) {
+			return;
+		}
+		const imageAddress = img.src;
+		imageChanged(imageAddress);
 	}
 
 	function frameSizeChanged(size: number) {
@@ -89,6 +106,11 @@ function SettingPanel({
 
 	function iconMarginChanged(margin: number) {
 		setIconMargin(margin);
+		applySettings();
+	}
+
+	function frameOpacityChanged(opacity: number) {
+		setFrameOpacity(opacity);
 		applySettings();
 	}
 
@@ -197,6 +219,7 @@ function SettingPanel({
 								onChange={(e) => {
 									imageChanged(e.target.value);
 								}}
+								onDrop={imageDrop}
 								{...(selected === -1 ? {disabled: true} : {})}
 							/>
 						</div>
@@ -241,6 +264,24 @@ function SettingPanel({
 								}}
 							/>
 						</div>
+						<div>
+							<label htmlFor="frameopacitycontrol">
+								Frame Opacity{" "}
+							</label>
+							<input
+								id="frameopacitycontrol"
+								type="range"
+								min="0"
+								max="100"
+								value={frameOpacity}
+								onChange={(e) => {
+									frameOpacityChanged(
+										parseInt(e.target.value)
+									);
+								}}
+							/>
+						</div>
+
 						<div>
 							<label htmlFor="cutsizecontrol">Icon Size </label>
 							<input

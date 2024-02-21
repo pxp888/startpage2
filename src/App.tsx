@@ -140,6 +140,7 @@ function App() {
 						{shortcuts.length % 2 === 1 ? (
 							<div className="shortcut"></div>
 						) : null}
+						<div className="colorframe"></div>
 					</div>
 				</div>
 				<div className={"spacer " + (editMode ? "edit" : "")} />
