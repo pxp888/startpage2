@@ -103,6 +103,11 @@ function App() {
 		localStorage.setItem("shortcuts", JSON.stringify(cuts));
 	}
 
+	const back = localStorage.getItem("backgroundImage") || null;
+	if (back) {
+		document.body.style.backgroundImage = `url(${back})`;
+	}
+
 	return (
 		<>
 			<div className="main_area">

@@ -1,5 +1,6 @@
 import {useState, useRef} from "react";
 
+import BackImage from "./BackImage";
 import "./settingpanel.css";
 
 interface SettingPanelProps {
@@ -270,6 +271,7 @@ function SettingPanel({
 						</div>
 					</div>
 					<div id="filesettings">
+						<BackImage />
 						<div>
 							<label htmlFor="backcolorcontrol">
 								Background Color{" "}
