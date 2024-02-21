@@ -92,12 +92,10 @@ function SettingPanel({
 	}
 
 	function moveUp() {
-		console.log("Move Up: " + selected);
 		swapIcons(selected - 1, true);
 	}
 
 	function moveDown() {
-		console.log("Move Down: " + selected);
 		swapIcons(selected, false);
 	}
 
@@ -118,6 +116,36 @@ function SettingPanel({
 	}
 
 	const fileInputRef = useRef<HTMLInputElement>(null);
+
+	function handleFileChange(event: React.ChangeEvent<HTMLInputElement>) {
+		if (!event.target.files) {
+			console.error("No files selected");
+			return;
+		}
+		const file = event.target.files[0];
+		const reader = new FileReader();
+
+		reader.onload = (event) => {
+			try {
+				const data = JSON.parse(event.target!.result as string);
+				for (const key in data) {
+					if (data.hasOwnProperty(key)) {
+						localStorage.setItem(key, data[key]);
+					}
+				}
+				console.log("Data loaded into localStorage");
+			} catch (error) {
+				console.error("Error parsing JSON", error);
+			}
+		};
+
+		reader.onerror = (error) => {
+			console.error("Error reading file", error);
+		};
+
+		reader.readAsText(file);
+		location.reload();
+	}
 
 	function uploadLocalStorage() {
 		const fileInput = fileInputRef.current;
@@ -286,6 +314,7 @@ function SettingPanel({
 									id="fileinput"
 									ref={fileInputRef}
 									style={{display: "none"}}
+									onChange={handleFileChange}
 								/>
 							</div>
 						</div>
