@@ -44,6 +44,7 @@ function App() {
 		setSelected(-1);
 		let cuts = shortcuts.filter((_, i) => i !== index);
 		setShortcuts(cuts);
+		localStorage.setItem("shortcuts", JSON.stringify(cuts));
 	}
 
 	function plusClicked() {
