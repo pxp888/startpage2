@@ -11,6 +11,7 @@ interface ShortcutProps {
 	clicked: (index: number) => void;
 	remover: (index: number) => void;
 	imageDropped: (index: number, image: string) => void;
+	moveIcons: (src: number, dest: number) => void;
 }
 
 function Shortcut({
@@ -23,8 +24,27 @@ function Shortcut({
 	clicked,
 	remover,
 	imageDropped,
+	moveIcons,
 }: ShortcutProps) {
 	const index = idx;
+
+	function handleDrop(e: React.DragEvent<HTMLDivElement>) {
+		e.preventDefault();
+		let source = e.dataTransfer.getData("text");
+		// console.log("drop", source, index);
+		moveIcons(parseInt(source), index);
+	}
+
+	const draggers = editMode
+		? {}
+		: {
+				draggable: "true",
+				onDragStart: (e: React.DragEvent<HTMLDivElement>) =>
+					e.dataTransfer.setData("text/plain", index.toString()),
+				onDragOver: (e: React.DragEvent<HTMLDivElement>) =>
+					e.preventDefault(),
+				onDrop: (e: React.DragEvent<HTMLDivElement>) => handleDrop(e),
+		  };
 
 	return (
 		<>
@@ -35,6 +55,7 @@ function Shortcut({
 					(editMode ? " editmode" : "")
 				}
 				onClick={() => clicked(index)}
+				{...draggers}
 			>
 				{editMode ? (
 					<p className="name">{name}</p>
@@ -44,8 +65,6 @@ function Shortcut({
 					</a>
 				)}
 
-				{/* <p>{idx}</p> */}
-				{/* <p>{link}</p> */}
 				{image ? (
 					<img src={image} alt="" />
 				) : (

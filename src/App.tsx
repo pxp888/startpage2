@@ -89,6 +89,17 @@ function App() {
 		localStorage.setItem("shortcuts", JSON.stringify(cuts));
 	}
 
+	function moveIcons(src: number, dest: number) {
+		if (src === -1 || dest === -1) return;
+		let cuts = [...shortcuts];
+		let temp = cuts[src];
+		cuts.splice(src, 1);
+		cuts.splice(dest, 0, temp);
+		setShortcuts(cuts);
+		// setSelected(dest);
+		localStorage.setItem("shortcuts", JSON.stringify(cuts));
+	}
+
 	function imageDropped(index: number, image: string) {
 		let cuts = [...shortcuts];
 		cuts[index][2] = image;
@@ -118,6 +129,7 @@ function App() {
 								clicked={clicked}
 								remover={remover}
 								imageDropped={imageDropped}
+								moveIcons={moveIcons}
 							/>
 						))}
 
