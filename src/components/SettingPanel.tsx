@@ -301,7 +301,7 @@ function SettingPanel({
 							/>
 						</div>
 						<div>
-							<p>File Operations: </p>
+							<label>File Operations: </label>
 							<div className="halves">
 								<button onClick={uploadLocalStorage}>
 									Import File
