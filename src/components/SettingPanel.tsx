@@ -182,7 +182,7 @@ function SettingPanel({
 		<>
 			{editMode ? (
 				<div id="settingpanel">
-					<div id="iconsettings">
+					<div id="iconsettings" className="setbox">
 						<div>
 							<label htmlFor="nameline">Name:</label>
 							<input
@@ -231,7 +231,7 @@ function SettingPanel({
 							</div>
 						</div>
 					</div>
-					<div id="pagesettings">
+					<div id="pagesettings" className="setbox">
 						<div>
 							<label htmlFor="framesizecontrol">
 								Max Frame Size{" "}
@@ -265,24 +265,6 @@ function SettingPanel({
 							/>
 						</div>
 						<div>
-							<label htmlFor="frameopacitycontrol">
-								Frame Opacity{" "}
-							</label>
-							<input
-								id="frameopacitycontrol"
-								type="range"
-								min="0"
-								max="100"
-								value={frameOpacity}
-								onChange={(e) => {
-									frameOpacityChanged(
-										parseInt(e.target.value)
-									);
-								}}
-							/>
-						</div>
-
-						<div>
 							<label htmlFor="cutsizecontrol">Icon Size </label>
 							<input
 								id="cutsizecontrol"
@@ -311,7 +293,7 @@ function SettingPanel({
 							/>
 						</div>
 					</div>
-					<div id="filesettings">
+					<div id="filesettings" className="setbox">
 						<BackImage />
 						<div>
 							<label htmlFor="backcolorcontrol">
@@ -336,6 +318,23 @@ function SettingPanel({
 								value={frameColor}
 								onChange={(e) => {
 									frameColorChanged(e.target.value);
+								}}
+							/>
+						</div>
+						<div>
+							<label htmlFor="frameopacitycontrol">
+								Frame Opacity{" "}
+							</label>
+							<input
+								id="frameopacitycontrol"
+								type="range"
+								min="0"
+								max="100"
+								value={frameOpacity}
+								onChange={(e) => {
+									frameOpacityChanged(
+										parseInt(e.target.value)
+									);
 								}}
 							/>
 						</div>
