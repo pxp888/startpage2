@@ -7,7 +7,7 @@ import "./mainpage.css";
 
 function Mainpage() {
 	let local = localStorage.getItem("shortcuts");
-	const defaults = ["New Shortcut", "", ""];
+
 	let startcuts: string[][];
 	if (local) {
 		startcuts = JSON.parse(local);
@@ -116,6 +116,7 @@ function Mainpage() {
 	}
 
 	function plusClicked() {
+		const defaults = ["New Shortcut", "", ""];
 		let cuts = [...shortcuts, defaults];
 		setShortcuts(cuts);
 		setSelected(cuts.length - 1);
@@ -180,11 +181,6 @@ function Mainpage() {
 		cuts[index][2] = image;
 		setShortcuts(cuts);
 		localStorage.setItem("shortcuts", JSON.stringify(cuts));
-	}
-
-	const back = localStorage.getItem("backgroundImage") || null;
-	if (back) {
-		document.body.style.backgroundImage = `url(${back})`;
 	}
 
 	return (

@@ -12,6 +12,7 @@
 
 	margin: var(--iconmargin);
 	overflow: hidden;
+	transition: filter 0.3s, box-shadow 0.3s;
 }
 
 .shortcut.selected {
