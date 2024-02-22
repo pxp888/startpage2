@@ -297,7 +297,7 @@ function SettingPanel({
 						<BackImage />
 						<div>
 							<label htmlFor="backcolorcontrol">
-								Background Color{" "}
+								Back Color{" "}
 							</label>
 							<input
 								id="backcolorcontrol"

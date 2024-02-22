@@ -191,7 +191,12 @@ function App() {
 	return (
 		<>
 			<div className="main_area">
-				<div className="main_content">
+				<div
+					className="main_content"
+					onClick={(e) => {
+						setSelected(-1);
+					}}
+				>
 					<div className="frame">
 						{shortcuts.map((shortcut, index) => (
 							<Shortcut

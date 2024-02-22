@@ -6,6 +6,7 @@
 	max-height: 45vh;
 	overflow-y: auto;
 	box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.5);
+	font-size: 1rem;
 }
 
 #settingpanel h3 {
@@ -22,13 +23,13 @@
 	overflow-x: auto;
 	border: 1px solid rgb(70, 70, 70);
 	border-radius: 5px;
-	padding: 10px;
+	padding: 5px;
 	margin: 10px;
 }
 
 .setbox > div {
 	display: grid;
-	grid-template-columns: 140px 1fr;
+	grid-template-columns: 120px 1fr;
 	align-items: baseline;
 }
 
@@ -38,7 +39,6 @@
 
 #settingpanel input[type="text" i] {
 	height: 24px;
-	font-size: 1rem;
 	border-radius: 4px;
 	border-style: none;
 	border: none;
@@ -51,6 +51,20 @@
 	display: grid;
 	grid-template-columns: 1fr 1fr;
 	margin-top: 3px;
+}
+
+@media (max-width: 400px) {
+	#settingpanel {
+		font-size: 0.8rem;
+	}
+
+	.setbox {
+		margin: 5px 0;
+	}
+
+	.setbox > div {
+		grid-template-columns: 100px 1fr;
+	}
 }
 
 .setbutton {

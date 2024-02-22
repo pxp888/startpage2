@@ -36,9 +36,13 @@ function Shortcut({
 				className={
 					"shortcut" +
 					(selected === index ? " selected" : "") +
-					(editMode ? " editmode" : "")
+					(editMode ? " editmode" : "") +
+					(selected > -1 && selected !== index ? " notselected" : "")
 				}
-				onClick={() => clicked(index)}
+				onClick={(e) => {
+					clicked(index);
+					e.stopPropagation();
+				}}
 			>
 				{editMode ? (
 					<p className="name">{name}</p>

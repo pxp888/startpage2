@@ -15,9 +15,13 @@
 }
 
 .shortcut.selected {
-	box-shadow: 0 0 10px 5px orange;
+	box-shadow: 0 0 10px 5px rgb(250, 250, 250);
 	z-index: 1;
-	opacity: 1;
+}
+
+.shortcut.notselected img {
+	filter: grayscale(100%);
+	opacity: 0.5;
 }
 
 .shortcut .name {

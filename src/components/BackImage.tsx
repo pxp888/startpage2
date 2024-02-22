@@ -29,7 +29,7 @@ function BackImage() {
 
 	return (
 		<div className="back-image">
-			<label htmlFor="backline">Background : </label>
+			<label htmlFor="backline">Background </label>
 			<input
 				type="text"
 				id="backline"
