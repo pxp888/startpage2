@@ -1,0 +1,76 @@
+.main_area {
+	width: 100%;
+	height: 100vh;
+}
+
+.main_content {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 100%;
+	overflow-y: auto;
+	margin-top: 50px;
+}
+
+.frame {
+	max-width: var(--framesize);
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: center;
+	margin-top: 50px;
+	padding: var(--framepadding);
+	position: relative;
+}
+
+.colorframe {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	z-index: -1;
+	left: 0;
+	top: 0;
+	background-color: var(--framecolor);
+	opacity: calc(var(--frameopacity) / 100);
+}
+
+.spacer {
+	height: 0px;
+}
+
+.spacer.edit {
+	height: 450px;
+}
+
+.setting_area {
+	width: 100%;
+	position: fixed;
+	top: 100vh;
+	bottom: auto;
+	z-index: 20;
+}
+
+.setting_area.edit {
+	top: auto;
+	bottom: 0;
+	animation-name: slide-up;
+	animation-duration: 0.5s;
+}
+
+@keyframes slide-up {
+	from {
+		bottom: -100%;
+	}
+	to {
+		bottom: 0%;
+	}
+}
+
+@keyframes slide-down {
+	from {
+		bottom: 0%;
+	}
+	to {
+		bottom: -100%;
+	}
+}
