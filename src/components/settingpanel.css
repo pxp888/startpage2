@@ -1,7 +1,7 @@
 #settingpanel {
 	background-color: gray;
 	display: grid;
-	grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+	grid-template-columns: repeat(auto-fill, minmax(375px, 1fr));
 
 	max-height: 45vh;
 	overflow-y: auto;
@@ -45,26 +45,13 @@
 	padding-block: 3px;
 	padding-inline: 5px;
 	margin-right: 5px;
+	font-size: 1.1rem;
 }
 
 .halves {
 	display: grid;
 	grid-template-columns: 1fr 1fr;
 	margin-top: 3px;
-}
-
-@media (max-width: 400px) {
-	#settingpanel {
-		font-size: 0.8rem;
-	}
-
-	.setbox {
-		margin: 5px 0;
-	}
-
-	.setbox > div {
-		grid-template-columns: 100px 1fr;
-	}
 }
 
 .setbutton {
@@ -100,4 +87,30 @@
 .setbox button:hover {
 	background-color: #3f3f3f;
 	color: white;
+}
+
+@media (max-width: 400px) {
+	#settingpanel {
+		font-size: 0.8rem;
+	}
+
+	.setbox {
+		margin: 5px 0;
+	}
+
+	.setbox > div {
+		grid-template-columns: 100px 1fr;
+	}
+
+	#settingpanel input[type="text" i] {
+		font-size: 0.9rem;
+	}
+
+	input[type="range" i] {
+		width: 250px;
+	}
+
+	#settingpanel input[type="text" i] {
+		width: 250px;
+	}
 }
