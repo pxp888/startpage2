@@ -31,7 +31,7 @@ function SettingPanel({
 	if (local) {
 		defaults = JSON.parse(local);
 	} else {
-		defaults = ["800", "150", "#242424", "#000000", "30", "0", "100"];
+		defaults = ["805", "150", "#242424", "#000000", "44", "0", "100"];
 	}
 
 	const [frameSize, setFrameSize] = useState(parseInt(defaults[0]));
