@@ -12,6 +12,6 @@
 	align-items: center;
 }
 
-.drop-zone.drag-over {
-	opacity: 1;
+.drop-zone.dragover {
+	opacity: 0.5;
 }

@@ -1,5 +1,5 @@
 import ImgDrop from "./ImgDrop";
-import OrderDrop from "./OrderDrop";
+// import OrderDrop from "./OrderDrop";
 
 import "./shortcut.css";
 
@@ -69,11 +69,12 @@ function Shortcut({
 							setImage={(image: string) => {
 								imageDropped(index, image);
 							}}
+							idx={index}
+							moveIcons={moveIcons}
 						/>
 					</>
-				) : (
-					<OrderDrop idx={index} moveIcons={moveIcons} />
-				)}
+				) : // <OrderDrop idx={index} moveIcons={moveIcons} />
+				null}
 			</div>
 		</>
 	);

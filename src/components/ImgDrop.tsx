@@ -3,50 +3,52 @@ import "./imgdrop.css";
 
 interface ImgDropProps {
 	setImage: (image: string) => void;
+	idx: number;
+	moveIcons: (src: number, dest: number) => void;
 }
 
-function ImgDrop({setImage}: ImgDropProps) {
-	const [isDragOver, setIsDragOver] = useState(false);
-
-	function handleDragEnter(event: React.DragEvent) {
-		event.preventDefault();
-		setIsDragOver(true);
-	}
-
-	function handleDragLeave(event: React.DragEvent) {
-		event.preventDefault();
-		setIsDragOver(false);
-	}
-
-	function handleDragOver(event: React.DragEvent) {
-		event.preventDefault();
-	}
+function ImgDrop({setImage, idx, moveIcons}: ImgDropProps) {
+	const [dragover, setDragover] = useState(false);
 
 	function handleDrop(event: React.DragEvent) {
+		setDragover(false);
 		event.preventDefault();
-
 		const imageUrl = event.dataTransfer.getData("text/html");
-		const parser = new DOMParser();
-		const doc = parser.parseFromString(imageUrl, "text/html");
-		const img = doc.querySelector("img");
-		if (img == null) {
+		if (imageUrl !== "") {
+			const parser = new DOMParser();
+			const doc = parser.parseFromString(imageUrl, "text/html");
+			const img = doc.querySelector("img");
+			if (img == null) {
+				return;
+			}
+			const imageAddress = img.src;
+			setImage(imageAddress);
 			return;
 		}
-		const imageAddress = img.src;
-		setImage(imageAddress);
-		setIsDragOver(false);
+
+		const text = event.dataTransfer.getData("text");
+		if (text === "" || text == null) {
+			return;
+		}
+		const source = parseInt(text);
+		moveIcons(source, idx);
+		return;
 	}
 
 	return (
 		<div
-			className={"drop-zone" + (isDragOver ? " drag-over" : "")}
-			onDragEnter={handleDragEnter}
-			onDragLeave={handleDragLeave}
-			onDragOver={handleDragOver}
+			className={"drop-zone" + (dragover ? " dragover" : "")}
+			draggable="true"
+			onDragOver={(e) => {
+				e.preventDefault();
+				setDragover(true);
+			}}
+			onDragLeave={() => setDragover(false)}
 			onDrop={handleDrop}
-		>
-			<p>Drop Image to set Icon</p>
-		</div>
+			onDragStart={(e) =>
+				e.dataTransfer.setData("text/plain", idx.toString())
+			}
+		></div>
 	);
 }
 
