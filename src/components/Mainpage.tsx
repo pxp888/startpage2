@@ -224,7 +224,12 @@ function Mainpage() {
 						<div className="colorframe"></div>
 					</div>
 				</div>
-				<div className={"spacer " + (editMode ? "edit" : "")} />
+				<div
+					className={"spacer " + (editMode ? "edit" : "")}
+					onClick={() => {
+						setSelected(-1);
+					}}
+				/>
 				<div className={"setting_area " + (editMode ? "edit" : "")}>
 					<div className="setbutton" onClick={toggleEditMode}>
 						<img src="./settings.png" alt="toggle settings" />
